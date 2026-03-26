@@ -1,5 +1,28 @@
 const postService = require('../Services/postService');
 
+
+//GET ALL POSTS
+const getPosts = async(req,res) => {
+    try{
+        const {page=1,limit=10} = req.query;
+        const posts = await postService.getPosts({page,limit});
+        res.status(200).json({
+            success:true,
+            message:"Fetched Posts Successfully",
+            data:posts.data,
+            pagination:posts.pagination
+        })
+    }catch(error){
+        res.status(500).json({
+            success:false,
+            message:'Failed to fetch Posts',
+            error:error.message
+        })
+    }
+}
+
+
+//Post DATA
 const createPost = async(req,res) => {
     try{
         const{title,content,category_id,author_id, image_url} = req.body;
@@ -29,4 +52,4 @@ res.status(201).json({
 
 };
 
-module.exports = {createPost};
+module.exports = {createPost,getPosts};

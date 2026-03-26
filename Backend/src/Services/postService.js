@@ -5,4 +5,9 @@ const createPost = async ({title,content,category_id,author_id,image_url})=>{
     return post;
 }
 
-module.exports = {createPost};
+const getPosts = async ({page,limit}) => {
+    const posts = await postRepo.getPosts({page,limit});
+    return posts;
+}
+
+module.exports = {createPost,getPosts};
