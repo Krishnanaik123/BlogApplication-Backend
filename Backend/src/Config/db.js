@@ -16,6 +16,6 @@ const pool = mysql2.createPool({
     .then(() =>
         console.log("MySql Connected Successfully!")
     .catch((err) => console.log("MySqlConnection Failed:",err.message))
-    )
+    );
 
     module.exports = db;
