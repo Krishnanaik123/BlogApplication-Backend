@@ -1,6 +1,5 @@
 const postService = require('../Services/postService');
 
-
 //GET ALL POSTS
 const getPosts = async(req,res) => {
     try{

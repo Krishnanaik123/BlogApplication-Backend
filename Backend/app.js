@@ -9,6 +9,8 @@ const app = express();
 
 const postRoutes = require('./src/Routes/postRoutes');
 const getPostRoutes = require('./src/Routes/getPostRoutes');
+const categoryRoutes = require('./src/Routes/categoryRoutes');
+
 
 // Middlewares
 app.use(cors());
@@ -20,6 +22,10 @@ app.use(express.urlencoded({ extended: true }));
 // Routes
 app.use('/api/blogPosts', postRoutes);
 app.use('/api/getPosts', getPostRoutes);
+app.use('/api/getCategories', categoryRoutes);
+
+app.use('/uploads', express.static('uploads'));
+
 
 // Health Check
 app.get('/', (req, res) => {

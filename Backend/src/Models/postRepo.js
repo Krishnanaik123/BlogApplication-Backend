@@ -1,5 +1,4 @@
 const db = require('../Config/db');
-
 //GET DATA Repository
 const getPosts = async ({ page, limit }) => {
   const pageNum = parseInt(page, 10);
