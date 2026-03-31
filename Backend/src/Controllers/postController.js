@@ -24,17 +24,17 @@ const getPosts = async(req,res) => {
 //Post DATA
 const createPost = async(req,res) => {
     try{
-        const{title,content,category_id,author_id, image_url} = req.body;
+        const{title,content,category_id,AuthorId, ImageUrl} = req.body;
 
         //Validation require Input Part
-        if(!title || !content || !category_id || !author_id){
+        if(!title || !content || !category_id || !AuthorId){
             return res.status(400).json({
                 success:false,
-                message:"title,content,category_id and author_id are must required"
+                message:"title,content,category_id and AuthorId are must required"
             })
         }
 
-const post = await postService.createPost({title,content,category_id,author_id,image_url});
+const post = await postService.createPost({title,content,category_id,AuthorId,ImageUrl});
 
 res.status(201).json({
     success:true,

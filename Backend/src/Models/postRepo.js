@@ -6,7 +6,7 @@ const getPosts = async ({ page, limit }) => {
   const offset = (pageNum - 1) * limitNum;
 
   const [posts] = await db.execute(
-    'SELECT * FROM posts WHERE IsDeleted = 0 ORDER BY Created_at DESC LIMIT ' + limitNum + ' OFFSET ' + offset
+    'SELECT * FROM posts WHERE IsDeleted = 0 ORDER BY CreatedAt DESC LIMIT ' + limitNum + ' OFFSET ' + offset
   );
 
   const [[{ total }]] = await db.execute(
@@ -25,14 +25,14 @@ const getPosts = async ({ page, limit }) => {
 };
 
 //Post Respository
-const createPost = async ({ title, content, category_id, author_id, image_url }) => {
+const createPost = async ({ title, content, category_id, AuthorId, ImageUrl }) => {
   try {
     const query = `
-      INSERT INTO posts (Title, Content, CategoryId, author_id, Image_url) 
+      INSERT INTO posts (Title, Content, CategoryId, AuthorId, ImageUrl) 
       VALUES (?, ?, ?, ?, ?)
     `;
     
-   const [result] = await db.execute(query, [title, content, category_id, author_id, image_url || null]);
+   const [result] = await db.execute(query, [title, content, category_id, AuthorId, ImageUrl || null]);
 
     const [post] = await db.execute(
       'SELECT * FROM posts WHERE PostId = ?', 
