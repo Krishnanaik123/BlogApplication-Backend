@@ -1,5 +1,4 @@
 const db = require('../Config/db');
-//GET DATA Repository
 const getPosts = async ({ page, limit }) => {
   const pageNum = parseInt(page, 10);
   const limitNum = parseInt(limit, 10);
@@ -24,7 +23,6 @@ const getPosts = async ({ page, limit }) => {
   };
 };
 
-//Post Respository
 const createPost = async ({ title, content, category_id, AuthorId, ImageUrl }) => {
   try {
     const query = `

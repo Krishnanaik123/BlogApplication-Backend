@@ -1,0 +1,40 @@
+const db = require('../Config/db');
+
+const updatePost = async (data) => {
+    try {
+        const { PostId, title, content, category_id, AuthorId, ImageUrl } = data;
+
+        if (!PostId || !title || !content || !category_id || !AuthorId) {
+            return {
+                success: false,
+                message: "All fields are required"
+            };
+        }
+
+        const query = `
+            UPDATE posts
+            SET Title = ?, Content = ?, CategoryId = ?, AuthorId = ?, ImageUrl = ?
+            WHERE PostId = ?
+        `;
+
+        const values = [title, content, category_id, AuthorId, ImageUrl, PostId];
+
+        const [result] = await db.execute(query, values);
+
+        if (result.affectedRows === 0) {
+            return {
+                success: false,
+                message: "Post not found"
+            };
+        }
+
+        return {
+            success: true,
+            message: "Post updated successfully"
+        };
+    } catch (error) {
+        throw error;
+    }
+};
+
+module.exports = { updatePost };

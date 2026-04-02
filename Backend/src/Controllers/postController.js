@@ -1,6 +1,5 @@
 const postService = require('../Services/postService');
 
-//GET ALL POSTS
 const getPosts = async(req,res) => {
     try{
         const {page=1,limit=10} = req.query;
@@ -21,12 +20,10 @@ const getPosts = async(req,res) => {
 }
 
 
-//Post DATA
 const createPost = async(req,res) => {
     try{
         const{title,content,category_id,AuthorId, ImageUrl} = req.body;
 
-        //Validation require Input Part
         if(!title || !content || !category_id || !AuthorId){
             return res.status(400).json({
                 success:false,
