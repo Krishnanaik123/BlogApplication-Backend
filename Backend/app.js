@@ -11,6 +11,7 @@ const postRoutes = require('./src/Routes/postRoutes');
 const getPostRoutes = require('./src/Routes/getPostRoutes');
 const categoryRoutes = require('./src/Routes/categoryRoutes');
 const updatePostRoutes = require('./src/Routes/updatePostRoutes');
+const deletePostRoutes = require('./src/Routes/deletePostRoutes');
 
 
 app.use(cors());
@@ -23,6 +24,7 @@ app.use('/api/blogPosts', postRoutes);
 app.use('/api/getPosts', getPostRoutes);
 app.use('/api/getCategories', categoryRoutes);
 app.use('/api/updatePost', updatePostRoutes);
+app.use('/api/deletePost', deletePostRoutes);
 
 app.use('/uploads', express.static('uploads'));
 

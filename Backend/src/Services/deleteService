@@ -1,0 +1,7 @@
+const deleteRepo = require('../Models/deleteRepo');
+
+const deletePost = async (PostId) => {
+    return await deleteRepo.deletePost(PostId);
+};
+
+module.exports = { deletePost };
