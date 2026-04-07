@@ -5,16 +5,20 @@ const updatePost = async (req, res) => {
 
         console.log("REQ BODY:", req.body);
 
-        const { PostId, title, content, category_id, AuthorId, ImageUrl } = req.body;
+        const { PostId, title, content, category_id, AuthorId } = req.body;
 
+        // Check required fields
         if (!PostId || !title || !content || !category_id || !AuthorId) {
             return res.status(400).json({
                 success: false,
-                message: "All fields are required"
+                message: "All fields are required (PostId, title, content, category_id, AuthorId)"
             });
         }
 
-        const result = await updateService.updatePost(req.body);
+        // Extract image URL from multer file upload (optional - can update without image)
+        const imageUrl = req.files && req.files.length > 0 ? req.files[0].filename : null;
+
+        const result = await updateService.updatePost({PostId, title, content, category_id, AuthorId, imageUrl});
 
         if (!result) {
             return res.status(400).json({

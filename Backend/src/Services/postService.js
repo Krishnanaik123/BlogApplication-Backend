@@ -10,4 +10,9 @@ const getPosts = async ({page,limit}) => {
     return posts;
 }
 
-module.exports = {createPost,getPosts};
+const getPostById = async (postId) => {
+    const post = await postRepo.getPostById(postId);
+    return post;
+}
+
+module.exports = {createPost,getPosts,getPostById};

@@ -11,13 +11,25 @@ const updatePost = async (data) => {
             };
         }
 
-        const query = `
-            UPDATE posts
-            SET Title = ?, Content = ?, CategoryId = ?, AuthorId = ?, ImageUrl = ?
-            WHERE PostId = ?
-        `;
+        // If ImageUrl is provided (new image uploaded), update it. Otherwise, keep existing image
+        let query;
+        let values;
 
-        const values = [title, content, category_id, AuthorId, ImageUrl, PostId];
+        if (ImageUrl) {
+            query = `
+                UPDATE posts
+                SET Title = ?, Content = ?, CategoryId = ?, AuthorId = ?, ImageUrl = ?
+                WHERE PostId = ?
+            `;
+            values = [title, content, category_id, AuthorId, ImageUrl, PostId];
+        } else {
+            query = `
+                UPDATE posts
+                SET Title = ?, Content = ?, CategoryId = ?, AuthorId = ?
+                WHERE PostId = ?
+            `;
+            values = [title, content, category_id, AuthorId, PostId];
+        }
 
         const [result] = await db.execute(query, values);
 

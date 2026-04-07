@@ -5,7 +5,8 @@ const getPosts = async ({ page, limit }) => {
   const offset = (pageNum - 1) * limitNum;
 
   const [posts] = await db.execute(
-    'SELECT * FROM posts WHERE IsDeleted = 0 ORDER BY CreatedAt DESC LIMIT ' + limitNum + ' OFFSET ' + offset
+    'SELECT * FROM posts WHERE IsDeleted = 0 ORDER BY CreatedAt DESC LIMIT ? OFFSET ?',
+    [limitNum, offset]
   );
 
   const [[{ total }]] = await db.execute(
@@ -21,6 +22,18 @@ const getPosts = async ({ page, limit }) => {
       totalPages: Math.ceil(total / limitNum)
     }
   };
+};
+
+const getPostById = async (postId) => {
+  try {
+    const [post] = await db.execute(
+      'SELECT * FROM posts WHERE PostId = ? AND IsDeleted = 0',
+      [postId]
+    );
+    return post[0] || null;
+  } catch (error) {
+    throw new Error(error.message);
+  }
 };
 
 const createPost = async ({ title, content, category_id, AuthorId, ImageUrl }) => {
@@ -44,4 +57,4 @@ const createPost = async ({ title, content, category_id, AuthorId, ImageUrl }) =
   }
 };
 
-module.exports = { createPost ,getPosts};
+module.exports = { createPost, getPosts, getPostById };
