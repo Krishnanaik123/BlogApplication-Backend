@@ -1,11 +1,18 @@
 const multer = require('multer');
 const path = require('path');
-const fs = require('fs');
+const fs = require('fs').promises;
 
 const uploadsDir = 'uploads/';
-if (!fs.existsSync(uploadsDir)) {
-    fs.mkdirSync(uploadsDir, { recursive: true });
-}
+const initializeUploadsDir = async () => {
+    try {
+        await fs.mkdir(uploadsDir, { recursive: true });
+        console.log('Uploads directory is ready');
+    } catch (error) {
+        console.error('Error creating uploads directory:', error);
+    }
+};
+
+initializeUploadsDir();
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
