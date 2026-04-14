@@ -1,0 +1,41 @@
+const bcrypt = require('bcryptjs');
+const accountsRepo = require('../Models/accountsRepo');
+
+const registerUser = async (username, password, confirmPassword) => {
+    if (password !== confirmPassword) {
+        throw new Error("Passwords do not match!");
+    }
+
+    if (password.length < 6) {
+        throw new Error("Password must be at least 6 characters long!");
+    }
+    
+    const existingUser = await accountsRepo.findByUsername(username);
+    if (existingUser) {
+        throw new Error("Username already taken! Please choose another one.");
+    }
+
+    const saltRounds = 10; 
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
+
+    return await accountsRepo.createAccount(username, hashedPassword);
+};
+
+const loginUser = async (username, password) => {
+    const user = await accountsRepo.findByUsername(username);
+    if (!user) {
+        throw new Error("Invalid username or password!");
+    }
+
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
+        throw new Error("Invalid username or password!");
+    }
+
+    return {
+        userId: user.id,
+        username: user.username
+    };
+};
+
+module.exports = { registerUser, loginUser };
