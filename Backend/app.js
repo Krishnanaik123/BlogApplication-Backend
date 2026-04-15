@@ -3,6 +3,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const dotenv = require('dotenv');
+const cookieParser = require('cookie-parser');
 
 
 dotenv.config();
@@ -16,7 +17,12 @@ const deletePostRoutes = require('./src/Routes/deletePostRoutes');
 const authRoutes = require('./src/Routes/authRoutes');
 
 
-app.use(cors());
+app.use(cors({
+  origin: 'http://127.0.0.1:5500',
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(helmet(
   {
     crossOriginResourcePolicy: false
@@ -25,6 +31,7 @@ app.use(helmet(
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 app.use('/api/blogPosts', postRoutes);
 app.use('/api/getPosts', getPostRoutes);
