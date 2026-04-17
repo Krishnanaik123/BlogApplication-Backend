@@ -3,7 +3,8 @@ const router = express.Router();
 
 const updateController = require('../Controllers/updateController');
 const upload = require('../middlewares/upload.middleware');
+const { verifyToken } = require('../middlewares/authMiddleware');
 
-router.put('/', upload.any(), updateController.updatePost);
+router.put('/', verifyToken, upload.any(), updateController.updatePost);
 
 module.exports = router;

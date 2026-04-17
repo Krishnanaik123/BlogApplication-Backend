@@ -2,6 +2,7 @@ const postService = require('../Services/postService');
 
 const getPosts = async(req,res) => {
     try{
+        console.log("Request: ", req)
         const {page=1,limit=10} = req.query;
         const posts = await postService.getPosts({page,limit});
         res.status(200).json({
