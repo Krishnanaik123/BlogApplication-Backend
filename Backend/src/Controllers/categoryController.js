@@ -5,7 +5,7 @@ const getCategories = async (req, res) => {
     const categories = await categoryService.getCategories();
     res.status(200).json({
       success: true,
-      data: categories
+      data:categories
     });
   } catch (error) {
     res.status(500).json({

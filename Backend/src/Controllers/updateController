@@ -15,7 +15,6 @@ const updatePost = async (req, res) => {
             });
         }
 
-        // Extract image URL from multer file upload (optional - can update without image)
         const imageUrl = req.files && req.files.length > 0 ? req.files[0].filename : null;
 
         const result = await updateService.updatePost({PostId, title, content, category_id, AuthorId, imageUrl});

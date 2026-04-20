@@ -6,5 +6,4 @@ const upload = require('../middlewares/upload.middleware');
 const { verifyToken } = require('../middlewares/authMiddleware');
 
 router.put('/', verifyToken, upload.any(), updateController.updatePost);
-
 module.exports = router;

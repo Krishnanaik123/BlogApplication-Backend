@@ -10,8 +10,6 @@ const updatePost = async (data) => {
                 message: "All fields are required"
             };
         }
-
-        // If ImageUrl is provided (new image uploaded), update it. Otherwise, keep existing image
         let query;
         let values;
 

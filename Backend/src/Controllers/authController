@@ -8,7 +8,6 @@ const signup = async (req, res) => {
 
         const result = await authService.registerUser(username, password, confirmPassword);
 
-
         res.status(201).json({
             success: true,
             message: "User registered successfully",

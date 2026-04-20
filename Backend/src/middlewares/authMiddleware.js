@@ -42,10 +42,10 @@ const verifyToken = (req, res, next) => {
         }
 
         if (error.name === 'JsonWebTokenError') {
-            return res.status(403).json({
-                success: false,
-                message: "Invalid token. Please provide a valid token."
-            });
+           return res.status(403).json({ 
+            success: false,
+            message: "Invalid Token. Someone tampered with your session!" 
+        });
         }
 
         return res.status(500).json({
