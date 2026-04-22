@@ -15,6 +15,7 @@ const categoryRoutes = require('./src/Routes/categoryRoutes');
 const updatePostRoutes = require('./src/Routes/updatePostRoutes');
 const deletePostRoutes = require('./src/Routes/deletePostRoutes');
 const authRoutes = require('./src/Routes/authRoutes');
+const profileRoutes = require('./src/Routes/profileRoutes');
 
 
 app.use(cors({
@@ -40,6 +41,7 @@ app.use('/api/updatePost', updatePostRoutes);
 app.use('/api/deletePost', deletePostRoutes);
 app.use('/api/signup', authRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api/profile', profileRoutes);
 
 const path = require('path');
 

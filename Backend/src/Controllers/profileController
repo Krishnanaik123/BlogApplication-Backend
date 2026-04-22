@@ -1,0 +1,31 @@
+const profileService = require('../Services/profileService');
+
+const getUserProfile = async (req, res) => {
+    try {
+
+            console.log("User object from Token:", req.user);
+
+        const userId = req.user.userId; 
+
+        const userData = await profileService.getUserData(userId);
+
+        if (!userData) {
+            return res.status(404).json({ 
+                success: false, 
+                message: "User not found" 
+            });
+        }
+
+        res.status(200).json({
+            success: true,
+            username: userData.username, 
+            email: userData.email        
+        });
+
+    } catch (error) {
+        console.error("Error in Controller:", error);
+        res.status(500).json({ success: false, message: "Server Error" });
+    }
+};
+
+module.exports = { getUserProfile };
