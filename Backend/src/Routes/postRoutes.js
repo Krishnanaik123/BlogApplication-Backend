@@ -6,5 +6,6 @@ const upload = require('../middlewares/upload.middleware');
 const { verifyToken } = require('../middlewares/authMiddleware');
 
 router.post('/', verifyToken, upload.any(), postController.createPost); 
+router.get('/search', postController.getSearchPosts);
 
 module.exports = router;

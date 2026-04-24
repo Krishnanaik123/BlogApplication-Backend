@@ -3,9 +3,7 @@ const jwt = require('jsonwebtoken');
 const verifyToken = (req, res, next) => {
     try {
         const authHeader = req.headers.authorization;
-        
-        console.log('AUTH HEADER:', authHeader ? 'Present' : 'Missing');
-        
+                
         if (!authHeader) {
             return res.status(401).json({
                 success: false,
@@ -15,22 +13,16 @@ const verifyToken = (req, res, next) => {
 
         const token = authHeader.split(' ')[1];
 
-        console.log('TOKEN:', token ? 'Found' : 'Not found');
-
         if (!token) {
             return res.status(401).json({
                 success: false,
                 message: "Invalid authorization format. Use 'Bearer <token>'"
             });
         }
-
-        console.log('JWT_SECRET:', process.env.JWT_SECRET ? 'Loaded' : 'Not loaded');
         
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
         req.user = decoded;
-
-        console.log('TOKEN VERIFIED:', decoded);
         next();
 
     } catch (error) {

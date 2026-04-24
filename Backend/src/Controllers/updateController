@@ -3,8 +3,6 @@ const updateService = require('../Services/updateService');
 const updatePost = async (req, res) => {
     try {
 
-        console.log("REQ BODY:", req.body);
-
         const { PostId, title, content, category_id, AuthorId } = req.body;
 
         // Check required fields

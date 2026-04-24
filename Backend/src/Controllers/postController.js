@@ -2,7 +2,6 @@ const postService = require('../Services/postService');
 
 const getPosts = async(req,res) => {
     try{
-        console.log("Request: ", req)
         const {page=1,limit=10} = req.query;
         const posts = await postService.getPosts({page,limit});
         res.status(200).json({
@@ -19,6 +18,28 @@ const getPosts = async(req,res) => {
         })
     }
 }
+
+const getSearchPosts = async (req, res) => {
+    try {
+        const { q, page = 1, limit = 10 } = req.query;
+        
+        const p = parseInt(page);
+        const l = parseInt(limit);
+        const offset = (p - 1) * l;
+
+        // Results techuko
+        const results = await postService.searchPostsService(q, l, offset);
+
+        res.status(200).json({
+            success: true,
+            message: results.length > 0 ? "Search results found" : "No results match your search",
+            data: results, // Ikkada results vastayi
+            count: results.length // Enni matches dhorikayo count
+        });
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
+    }
+};
 
 const createPost = async(req,res) => {
     try{
@@ -58,4 +79,4 @@ const createPost = async(req,res) => {
 
 };
 
-module.exports = {createPost,getPosts};
+module.exports = {createPost,getPosts,getSearchPosts};

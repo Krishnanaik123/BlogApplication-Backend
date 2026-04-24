@@ -3,8 +3,6 @@ const profileService = require('../Services/profileService');
 const getUserProfile = async (req, res) => {
     try {
 
-            console.log("User object from Token:", req.user);
-
         const userId = req.user.userId; 
 
         const userData = await profileService.getUserData(userId);

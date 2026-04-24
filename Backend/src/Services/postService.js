@@ -10,4 +10,9 @@ const getPosts = async ({page,limit}) => {
     return posts;
 }
 
-module.exports = {createPost,getPosts};
+
+const searchPostsService = async (q, limit, offset) => {
+    // ikkada Repository function pilustunnam
+    return await postRepo.searchPostsRepo(q, limit, offset);
+};
+module.exports = {createPost,getPosts,searchPostsService};

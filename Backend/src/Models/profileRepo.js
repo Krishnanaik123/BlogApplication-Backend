@@ -7,7 +7,7 @@ const findUserById = async (userId) => {
             [userId]
         );
         
-        console.log("Database Result:", rows[0]); // Debugging kosam
+        console.log("Database Result:", rows[0]); 
         return rows[0];
     } catch (error) {
         console.error("Database Error Details:", error.message);

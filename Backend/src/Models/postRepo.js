@@ -23,6 +23,22 @@ const getPosts = async ({ page, limit }) => {
   };
 };
 
+const searchPostsRepo = async (keyword, limit, offset) => {
+    // Keyword ni wildcard (%) tho wrap cheyali
+    const searchKeyword = `%${keyword}%`;
+
+    const sql = `
+        SELECT * FROM posts 
+        WHERE (Title LIKE ? OR Content LIKE ?) 
+        AND IsDeleted = 0
+        ORDER BY CreatedAt DESC
+        LIMIT ${Number(limit)} OFFSET ${Number(offset)}`;
+    
+    // Title and Content renditlo vethukutunnam
+    const [rows] = await db.execute(sql, [searchKeyword, searchKeyword]);
+    return rows;
+};
+
 const createPost = async ({ title, content, category_id, AuthorId, ImageUrl }) => {
   try {
     const query = `
@@ -44,4 +60,4 @@ const createPost = async ({ title, content, category_id, AuthorId, ImageUrl }) =
   }
 };
 
-module.exports = { createPost ,getPosts};
+module.exports = { createPost ,getPosts,searchPostsRepo};
