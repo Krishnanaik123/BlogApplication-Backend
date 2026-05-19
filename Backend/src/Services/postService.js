@@ -15,4 +15,10 @@ const searchPostsService = async (q, limit, offset) => {
     // ikkada Repository function pilustunnam
     return await postRepo.searchPostsRepo(q, limit, offset);
 };
-module.exports = {createPost,getPosts,searchPostsService};
+
+const getSinglePost = async (id) => {
+
+    return await postRepo
+    .getSinglePost(id);
+};
+module.exports = {createPost,getPosts,searchPostsService,getSinglePost};

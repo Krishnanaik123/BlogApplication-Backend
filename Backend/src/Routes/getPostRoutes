@@ -3,6 +3,8 @@ const router = express.Router();
 const postController = require('../Controllers/postController');
 const { verifyToken } = require('../middlewares/authMiddleware');
 
-router.get('/', verifyToken, postController.getPosts);
+router.get('/', postController.getPosts);
+// Get Single Post
+router.get('/:id', postController.getSinglePost);
 
 module.exports = router;

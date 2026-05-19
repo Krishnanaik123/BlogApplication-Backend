@@ -79,4 +79,35 @@ const createPost = async(req,res) => {
 
 };
 
-module.exports = {createPost,getPosts,getSearchPosts};
+const getSinglePost = async (req, res) => {
+
+    try {
+
+        const { id } = req.params;
+
+        const post =
+        await postService.getSinglePost(id);
+
+        if (!post) {
+
+            return res.status(404).json({
+                success: false,
+                message: 'Post Not Found'
+            });
+        }
+
+        res.status(200).json({
+            success: true,
+            data: post
+        });
+
+    } catch (error) {
+
+        res.status(500).json({
+            success: false,
+            message: error.message
+        });
+    }
+};
+
+module.exports = {createPost,getPosts,getSearchPosts,getSinglePost};
