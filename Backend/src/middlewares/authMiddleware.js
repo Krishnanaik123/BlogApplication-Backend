@@ -9,7 +9,7 @@ const verifyToken = (req, res, next) => {
                 success: false,
                 message: "No token provided. Authorization header required."
             });
-        }
+        }                                                                                                                                   
 
         const token = authHeader.split(' ')[1];
 
