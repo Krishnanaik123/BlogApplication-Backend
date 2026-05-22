@@ -44,12 +44,31 @@ const getSearchPosts = async (req, res) => {
 const createPost = async(req,res) => {
     try{
         
-        const{title,content,category_id,AuthorId,authorId} = req.body;
+        const{
+    title_en,
+    title_hi,
+    title_te,
+
+    content_en,
+    content_hi,
+    content_te,
+
+    category_id,
+    AuthorId,
+    authorId
+
+} = req.body;
         const finalAuthorId = AuthorId || authorId;
   
         const missingFields = [];
-        if(!title) missingFields.push('title');
-        if(!content) missingFields.push('content');
+       if(!title_en) missingFields.push('title_en');
+       if(!title_hi) missingFields.push('title_hi');
+       if(!title_te) missingFields.push('title_te');
+
+       if(!content_en) missingFields.push('content_en');
+       if(!content_hi) missingFields.push('content_hi');
+       if(!content_te) missingFields.push('content_te');
+
         if(!category_id) missingFields.push('category_id');
         if(!finalAuthorId) missingFields.push('AuthorId/authorId');
 
@@ -62,7 +81,7 @@ const createPost = async(req,res) => {
 
         const imageUrl = req.files && req.files.length > 0 ? req.files[0].filename : null;
 
-        const post = await postService.createPost({title,content,category_id,AuthorId:finalAuthorId,imageUrl});
+        const post = await postService.createPost({title_en,title_hi,title_te,content_en,content_hi,content_te,category_id,AuthorId:finalAuthorId,imageUrl});
 
         res.status(201).json({
             success:true,
@@ -77,7 +96,7 @@ const createPost = async(req,res) => {
         })
     }
 
-};
+};  
 
 const getSinglePost = async (req, res) => {
 

@@ -1,7 +1,7 @@
 const postRepo = require('../Models/postRepo');
 
-const createPost = async ({title,content,category_id,AuthorId,imageUrl})=>{
-    const post = await postRepo.createPost({title,content,category_id,AuthorId,ImageUrl: imageUrl || null});
+const createPost = async ({title_en,title_hi,title_te,content_en,content_hi,content_te,category_id,AuthorId,imageUrl})=>{
+    const post = await postRepo.createPost({title_en,title_hi,title_te,content_en,content_hi,content_te,category_id,AuthorId,ImageUrl: imageUrl || null});
     return post;
 }
 

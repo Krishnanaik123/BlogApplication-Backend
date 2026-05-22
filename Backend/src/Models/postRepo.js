@@ -37,14 +37,14 @@ const searchPostsRepo = async (keyword, limit, offset) => {
     return rows;
 };
 
-const createPost = async ({ title, content, category_id, AuthorId, ImageUrl }) => {
+const createPost = async ({ title_en, title_hi, title_te, content_en, content_hi, content_te, category_id, AuthorId, ImageUrl }) => {
   try {
     const query = `
-      INSERT INTO posts (Title, Content, CategoryId, AuthorId, ImageUrl) 
-      VALUES (?, ?, ?, ?, ?)
+      INSERT INTO posts (Title_en, Title_hi, Title_te, Content_en, Content_hi, Content_te, CategoryId, AuthorId, ImageUrl) 
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
     `;
     
-   const [result] = await db.execute(query, [title, content, category_id, AuthorId, ImageUrl || null]);
+   const [result] = await db.execute(query, [title_en, title_hi, title_te, content_en, content_hi, content_te, category_id, AuthorId, ImageUrl || null]);
 
     const [post] = await db.execute(
       'SELECT * FROM posts WHERE PostId = ?', 
@@ -54,8 +54,11 @@ const createPost = async ({ title, content, category_id, AuthorId, ImageUrl }) =
     return post[0];
 
   } catch (error) {
+
+        console.log("POST ERROR =>", error);
+
     throw new Error(error.message);
-  }
+  }7
 };
 
 const getSinglePost = async (id) => {
