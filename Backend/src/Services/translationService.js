@@ -5,18 +5,14 @@ const delay = (ms) =>
     setTimeout(resolve, ms)
   );
 
-
 // Translation Function
-
 const translateText = async (text,targetLanguage) => {
-
   try {
-    await delay(5000);
+    await delay(8000);
     let finalText = text;
     if (targetLanguage === "hi") {
 
       finalText =
-
         `Translate the following text strictly into Hindi language using only Devanagari Hindi script.
               Do not use English words.
               Do not transliterate.
@@ -27,10 +23,8 @@ const translateText = async (text,targetLanguage) => {
 
     }
     if (targetLanguage === "te") {
-
       finalText =
         `Translate the following text strictly into Telugu language using only Telugu script.
-
               Do not use English words.
               Return only Telugu translation.
               Text:
