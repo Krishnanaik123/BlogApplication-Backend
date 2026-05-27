@@ -162,3 +162,22 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2026-05-27 15:38:44
+
+
+.env file create chesi pettu andulo ee file pakaga very important .env file 
+# Server
+PORT=5000
+
+# Database
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=Krish@123
+DB_NAME=blogdata
+
+# JWT
+JWT_EXPIRES_IN=7d
+
+JWT_SECRET=My_Super_Secret_Key_12345
+
+# Environment
+NODE_ENV=development
