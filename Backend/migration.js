@@ -43,8 +43,6 @@ const migratePosts = async () => {
           console.log(`Skipping empty post ID: ${post.PostId}`);
           continue;
         }
-
-        // 2. ప్రతి ఒక్క రిక్వెస్ట్ మధ్య చిన్న గ్యాప్ (Cool down) ఇస్తున్నాం
         console.log("Translating Title to Hindi...");
         const titleHi = await translateText(englishTitle, "hi");
         await new Promise((r) => setTimeout(r, 2000)); 
@@ -59,8 +57,6 @@ const migratePosts = async () => {
 
         console.log("Translating Content to Telugu...");
         const contentTe = await translateText(englishContent, "te");
-
-        // DB Update
         await connection.execute(
           `
           UPDATE Posts 
@@ -77,13 +73,10 @@ const migratePosts = async () => {
         );
 
         console.log(`Successfully updated database for Post ID: ${post.PostId}`);
-
-        // 3. ఒక పోస్ట్ మొత్తం అయిపోయాక 5 సెకన్లు ఆగుతాం
         console.log("Waiting 5 seconds before the next post to bypass Google rate limits...");
         await new Promise((r) => setTimeout(r, 5000));
 
       } catch (postError) {
-        // ఏదైనా ఒక పోస్ట్ దగ్గర గూగుల్ బ్లాక్ చేస్తే స్క్రిప్ట్ మొత్తం క్రాష్ అవ్వకుండా, నెక్స్ట్ రన్ కోసం ఆగుతుంది
         console.error(`Error translating post ID ${post.PostId}:`, postError.message);
         console.log("API might be throttled. Waiting 20 seconds before checking next available item...");
         await new Promise((r) => setTimeout(r, 20000));

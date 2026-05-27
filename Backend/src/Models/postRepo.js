@@ -75,23 +75,12 @@ const getPosts = async ({ page, limit }) => {
   };
 };
 
-const searchPostsRepo =
-async (
-  keyword,
-  limit,
-  offset
-) => {
+const searchPostsRepo = async (keyword,limit,offset) => {
 
-  const searchKeyword =
-  `%${keyword}%`;
+  const searchKeyword =`%${keyword}%`;
 
-  const sql = `
-
-    SELECT
-
-      PostId,
-
-      -- OLD Columns
+  const sql = `SELECT PostId,
+ -- OLD Columns
       Title,
       Content,
 
@@ -130,8 +119,7 @@ async (
 
   `;
 
-  const [rows] =
-  await db.execute(
+  const [rows] = await db.execute(
     sql,
     [
       searchKeyword,
@@ -183,11 +171,7 @@ const createPost = async ({
 
     `;
 
-    const [result] =
-    await db.execute(
-
-      query,
-
+    const [result] = await db.execute(query,
       [
         title_en,
         title_hi,
@@ -204,12 +188,7 @@ const createPost = async ({
 
     );
 
-    const [post] =
-    await db.execute(
-
-      `SELECT
-
-        PostId,
+    const [post] = await db.execute(`SELECT PostId,
 
         Title,
         Content,
@@ -228,37 +207,17 @@ const createPost = async ({
         CreatedAt,
         IsDeleted
 
-       FROM posts
-
-       WHERE PostId = ?`,
-
-      [result.insertId]
-
-    );
-
-    return post[0];
-
+       FROM posts WHERE PostId = ?`,[result.insertId]);
+          return post[0];
   } catch (error) {
 
-    console.log(
-      "POST ERROR =>",
-      error
-    );
-
-    throw new Error(
-      error.message
-    );
+    console.log("POST ERROR =>",error);
+    throw new Error(error.message);
   }
 };
 
-const getSinglePost =
-async (id) => {
-
-  const query = `
-
-    SELECT
-
-      PostId,
+const getSinglePost = async (id) => {
+  const query = `SELECT PostId,
 
       Title,
       Content,
@@ -283,18 +242,8 @@ async (id) => {
 
   `;
 
-  const [rows] =
-  await db.execute(
-    query,
-    [id]
-  );
-
+  const [rows] = await db.execute(query,[id]);
   return rows[0];
 };
 
-module.exports = {
-  createPost,
-  getPosts,
-  searchPostsRepo,
-  getSinglePost
-};
+module.exports = { createPost,getPosts,searchPostsRepo,getSinglePost};

@@ -12,7 +12,6 @@ const getPosts = async ({page,limit}) => {
 
 
 const searchPostsService = async (q, limit, offset) => {
-    // ikkada Repository function pilustunnam
     return await postRepo.searchPostsRepo(q, limit, offset);
 };
 
