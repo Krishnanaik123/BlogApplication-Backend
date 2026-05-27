@@ -1,5 +1,9 @@
 const postService = require('../Services/postService');
 
+const { translateText,} = require(
+  '../Services/translationService'
+);
+
 const getPosts = async(req,res) => {
     try{
         const {page=1,limit=10} = req.query;
@@ -44,33 +48,62 @@ const getSearchPosts = async (req, res) => {
 const createPost = async(req,res) => {
     try{
         
-        const{
-    title_en,
-    title_hi,
-    title_te,
-
-    content_en,
-    content_hi,
-    content_te,
-
-    category_id,
-    AuthorId,
-    authorId
-
+      const {
+  title_en,
+  content_en,
+  category_id,
+  AuthorId,
+  authorId
 } = req.body;
         const finalAuthorId = AuthorId || authorId;
-  
+
+                    const title_hi =
+            await translateText(
+                title_en,
+                "hi"
+            );
+
+            const title_te =
+            await translateText(
+                title_en,
+                "te"
+            );
+
+            const content_hi =
+            await translateText(
+                content_en,
+                "hi"
+            );
+
+            const content_te =
+            await translateText(
+                content_en,
+                "te"
+            );
+
+            console.log(
+  "TITLE HI =>",
+  title_hi
+);
+
+console.log(
+  "TITLE TE =>",
+  title_te
+);
+
+console.log(
+  "CONTENT HI =>",
+  content_hi
+);
+
+console.log(
+  "CONTENT TE =>",
+  content_te
+);
+            
         const missingFields = [];
        if(!title_en) missingFields.push('title_en');
-       if(!title_hi) missingFields.push('title_hi');
-       if(!title_te) missingFields.push('title_te');
-
-       if(!content_en) missingFields.push('content_en');
-       if(!content_hi) missingFields.push('content_hi');
-       if(!content_te) missingFields.push('content_te');
-
-        if(!category_id) missingFields.push('category_id');
-        if(!finalAuthorId) missingFields.push('AuthorId/authorId');
+   
 
         if(missingFields.length > 0){
             return res.status(400).json({
