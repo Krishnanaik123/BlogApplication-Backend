@@ -10,7 +10,6 @@ const getPosts = async ({page,limit}) => {
     return posts;
 }
 
-
 const searchPostsService = async (q, limit, offset) => {
     return await postRepo.searchPostsRepo(q, limit, offset);
 };

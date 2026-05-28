@@ -48,9 +48,7 @@ const createPost = async(req,res) => {
                 authorId
 } = req.body;
         const finalAuthorId = AuthorId || authorId;
-     const title_hi =
-            await translateText( title_en, "hi" );
-
+         const title_hi = await translateText( title_en, "hi" );
             const title_te = await translateText(title_en,"te");
             const content_hi = await translateText(content_en,"hi");
             const content_te = await translateText(content_en,"te");
