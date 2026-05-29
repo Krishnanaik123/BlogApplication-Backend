@@ -1,41 +1,35 @@
-const mysql2 = require('mysql2');
-require('dotenv').config();
+// // const mysql2 = require('mysql2');
+// // require('dotenv').config();
 
-const pool = mysql2.createPool({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
-  port: process.env.DB_PORT,
-  ssl: {
-    rejectUnauthorized: false
-  },
-  waitForConnections: true,
-  connectionLimit: 10,
-  queueLimit: 0,
-  connectTimeout: 10000
-});
+// // const pool = mysql2.createPool({
+// //   host: process.env.DB_HOST,
+// //   user: process.env.DB_USER,
+// //   password: process.env.DB_PASSWORD,
+// //   database: process.env.DB_NAME,
+// //   port: process.env.DB_PORT,
+// //   ssl: {
+// //     rejectUnauthorized: false
+// //   },
+// //   waitForConnections: true,
+// //   connectionLimit: 10,
+// //   queueLimit: 0,
+// //   connectTimeout: 10000
+// // });
 
-const db = pool.promise();
+// // const db = pool.promise();
 
-db.getConnection()
-  .then(() => console.log('MySQL Connected Successfully!'))
-  .catch((err) => console.error('MySQL Connection Failed:', err));
+// // db.getConnection()
+// //   .then(() => console.log('MySQL Connected Successfully!'))
+// //   .catch((err) => console.error('MySQL Connection Failed:', err));
 
-module.exports = db;
+// // module.exports = db;
 
 
 // const mysql2 = require('mysql2');
 // require('dotenv').config();
 
 // const pool = mysql2.createPool({
-//   host: process.env.DB_HOST,
-//   user: process.env.DB_USER,
-//   password: process.env.DB_PASSWORD,
-//   database: process.env.DB_NAME,
-//   waitForConnections: true,
-//   connectionLimit: 10,
-//   queueLimit: 0
+//   uri: "mysql://root:******@trolley.proxy.rlwy.net:49619/railway"
 // });
 
 // const db = pool.promise();
@@ -45,3 +39,28 @@ module.exports = db;
 //   .catch((err) => console.error('MySQL Connection Failed:', err.message));
 
 // module.exports = db;
+
+
+
+
+
+
+const mysql2 = require('mysql2');
+
+const pool = mysql2.createPool(
+  "mysql://root:dBEawYxFiMSiEvHsZmnvNKsEsRHnkrQq@trolley.proxy.rlwy.net:49619/railway"
+);
+
+const db = pool.promise();
+
+db.getConnection()
+  .then((connection) => {
+    console.log("MySQL Connected Successfully!");
+    connection.release();
+  })
+  .catch((err) => {
+    console.error("❌ MySQL Connection Failed:");
+    console.error(err);
+  });
+
+module.exports = db;
