@@ -68,7 +68,9 @@ const createPost = async(req,res) => {
             })
         }
 
-        const imageUrl = req.files && req.files.length > 0 ? req.files[0].filename : null;
+
+        const imageUrl = req.files && req.files.length > 0 ? req.files[0].path: null;
+        // const imageUrl = req.files && req.files.length > 0 ? req.files[0].filename : null;
         const post = await postService.createPost({title_en,title_hi,title_te,content_en,content_hi,content_te,category_id,AuthorId:finalAuthorId,imageUrl});
 
         res.status(201).json({
