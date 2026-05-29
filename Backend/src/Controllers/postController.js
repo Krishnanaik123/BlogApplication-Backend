@@ -39,6 +39,8 @@ const getSearchPosts = async (req, res) => {
 };
 
 const createPost = async(req,res) => {
+
+
     try{   
       const {
                 title_en,
@@ -79,6 +81,7 @@ const createPost = async(req,res) => {
             data:post
         })
     }catch(error){
+          console.log("CREATE POST ERROR =>", error);
         res.status(500).json({
             success:false,
             message:'Failed to Create Post',
