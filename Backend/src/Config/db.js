@@ -36,9 +36,7 @@
 //Mysql railway server connection
 const mysql2 = require('mysql2');
 
-const pool = mysql2.createPool(
-  "mysql://root:dBEawYxFiMSiEvHsZmnvNKsEsRHnkrQq@trolley.proxy.rlwy.net:49619/railway"
-);
+const pool = mysql2.createPool(process.env.DATABASE_URL || "mysql://root:dBEawYxFiMSiEvHsZmnvNKsEsRHnkrQq@trolley.proxy.rlwy.net:49619/railway");
 
 const db = pool.promise();
 
