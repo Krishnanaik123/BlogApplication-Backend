@@ -30,26 +30,20 @@ CREATE TABLE `categories` (
   `Created_at` date DEFAULT (curdate()),
   PRIMARY KEY (`CategoryId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+
 
 --
 -- Dumping data for table `categories`
 --
 
 LOCK TABLES `categories` WRITE;
-/*!40000 ALTER TABLE `categories` DISABLE KEYS */;
 INSERT INTO `categories` VALUES (1,'Technology','2026-03-23'),(2,'Science','2026-03-23'),(3,'Health','2026-03-23'),(4,'Sports','2026-03-23'),(5,'Travel','2026-03-23'),(6,'Food','2026-03-23'),(7,'Finance','2026-03-23'),(8,'Education','2026-03-23'),(9,'Entertainment','2026-03-23'),(10,'Politics','2026-03-23');
-/*!40000 ALTER TABLE `categories` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `clients`
---
+
 AuthorId must select UI Interface Post creating time 1 or 2 only because to usere is there
 
 DROP TABLE IF EXISTS `clients`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `clients` (
   `id` int NOT NULL AUTO_INCREMENT,
   `username` varchar(50) NOT NULL,
@@ -59,7 +53,6 @@ CREATE TABLE `clients` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `clients`
@@ -68,9 +61,7 @@ CREATE TABLE `clients` (
 AuthorId must select UI Interface Post creating time 1 or 2 only because to usere is there
 
 LOCK TABLES `clients` WRITE;
-/*!40000 ALTER TABLE `clients` DISABLE KEYS */;
 INSERT INTO `clients` VALUES (1,'testuser123','$2b$10$9o6Lb1/00oCTScvvYsduP.Fwnp5ziXAoAS4GbfEVDKYdnO4cnWR0m','2026-04-13 09:00:57','2026-04-13 09:00:57'),(2,'Manohar','$2b$10$ZMbcY4ylFDFPmAv/mCJpC.Dt8VUjYnd0SdFsNMAK0QOuGnKIpOAa6','2026-04-13 09:56:00','2026-04-13 09:56:00'),(3,'Vignesh','$2b$10$9WnR5zkZTo7hs1A2p4olj.tb4V5awn8p5K7fd6K6S67CcrC7I6rdy','2026-04-13 09:57:16','2026-04-13 09:57:16'),(4,'Gnanesh','$2b$10$S8wAVcCvScfhMarCL6xJLugPdyUJ9voyusfzGfkY.l4zBz243sEJi','2026-04-14 05:37:29','2026-04-14 05:37:29'),(5,'mohamad','$2b$10$DC.xBUN1kM23xG.Tk5r8j.Co3EXiKGv0JQRR/mjWBAfCbrUv6sYPC','2026-04-14 06:28:12','2026-04-14 06:28:12'),(6,'Manju','$2b$10$NBDJxcInK9puAsIfFfRoqeuk06Xi0yVZQ9SNz0zzClr/Bj/BRRxtu','2026-04-14 07:02:57','2026-04-14 07:02:57'),(7,'','$2b$10$zBpntvF.o9WO9PFAJ5haieyWPlprXrUR.vnNIOedmUfqv75GmGmwa','2026-04-14 07:08:58','2026-04-14 07:08:58'),(8,'Arjun','$2b$10$kxgBevDG/1VfhWAd0ykTWea2EPQ3xLjhQxvFrUhLnnjFe5X9xQs02','2026-04-14 07:09:12','2026-04-14 07:09:12'),(9,'Mahesh Reddy','$2b$10$Aso5fHyy00wWxD4UTf06B.ywelyd7qNV9FwzNN1VAa2N1itro3H4G','2026-04-14 07:16:53','2026-04-14 07:16:53'),(10,'Manjunath','$2b$10$xwMz1sNVN.DiYHYANnA9QeSTB/jtGA/z2vvfBHXe75jjtb4qQvWOO','2026-04-14 07:19:04','2026-04-14 07:19:04'),(11,'bala','$2b$10$zSbYMdrlgdhxdbiSmN9Yi.pACiMQzVC4zHkr/7ft9TpQ8HP7mz0eq','2026-04-14 13:28:08','2026-04-14 13:28:08'),(12,'balaji','$2b$10$Bq4yKEptwDcGrw8nTgxsveWTlrKNSnYGpIv7hgF0HzM0/1giE9fEK','2026-04-14 13:30:12','2026-04-14 13:30:12'),(13,'Rajesh','$2b$10$ac9Lnoa6MCz9G3fIzo/Xw.auje8boV4bFmGkyRuxqdWYTfhWc98BC','2026-04-15 05:02:37','2026-04-15 05:02:37'),(14,'Vejeth','$2b$10$m2t4SrFvEL2RPlZij.i4Ue01cHjFx99KNwcT7boXbJgHPlN0RNWZq','2026-04-15 05:04:59','2026-04-15 05:04:59'),(15,'Uzair','$2b$10$kIsWi6kdk.7n5tErxhJ2p.t6/ubs0uRY7COidyYua0KEVkpQ7H9Py','2026-04-15 06:48:43','2026-04-15 06:48:43'),(16,'Umair','$2b$10$lhLuKxN.7OAdFA6ftGsf5O6j4IS33yXC05DZOsZrdjOLOcD/kVRF6','2026-04-15 10:32:57','2026-04-15 10:32:57'),(17,'Arjun Reddy','$2b$10$4ObpEPKJ7SEZLmXV7ZlDn.6F/4f5lXcXDnQTYdhdbEkelJJjfQeey','2026-04-15 12:06:43','2026-04-15 12:06:43'),(18,'dravid','$2b$10$cO00eSKv15vkqMY5Fpyht.Qeb.Wtr12Jho4HCVjKDG/8RWpoA.hl2','2026-04-15 12:41:48','2026-04-15 12:41:48'),(19,'Jamalamadugu','$2b$10$VYXtxhIEugYd.ncDKhYMyOewUI7PCt5VV6g8lfQrlL2Swrx4PPRYi','2026-04-16 04:45:19','2026-04-16 04:45:19'),(20,'jagiri','$2b$10$afRCOpevwzpV9QZRhzbVcecA/.7.MdW1NdC7dNvJTMjIzHf.UMJJa','2026-04-16 04:51:48','2026-04-16 04:51:48'),(21,'Magi','$2b$10$IA0GRq7KZe0bxa3jPXAxOOzWogHx8v99PPfNbVCak7sfbZGW20qua','2026-04-16 05:24:07','2026-04-16 05:24:07'),(22,'Mango','$2b$10$ksKeZD825LmwkECwS.x1c.0XmoKMG1qZWFicAlmnLO8Aof4Lb4fBu','2026-04-16 06:35:09','2026-04-16 06:35:09'),(23,'Rajesha','$2b$10$wrCkX0OmmEMUbMGGffcc..QGv8AqEVFKBu06rdQe5rfqiNhnnK.gG','2026-04-16 06:59:45','2026-04-16 06:59:45'),(24,'Majskdfh','$2b$10$e7X7riNB2POS4x..wgz5ReFe7U9J0o39BQQOeY.nlMUHogEfXzbAy','2026-04-16 07:43:37','2026-04-16 07:43:37'),(25,'Ragunath','$2b$10$7tFT1ZUMGLdADjo.yr4.xeI3ORwOPK7lCrOYUjBy.efOmrftnALLK','2026-04-16 11:04:31','2026-04-16 11:04:31'),(26,'Rajeswari','$2b$10$bH0/s6YSL0w8.zJgGzeSeOeaPMRCMZty3sjHTPQuoG4xnBqBIDIBS','2026-04-16 12:55:11','2026-04-16 12:55:11'),(27,'Vidvash','$2b$10$NNJ0nMifvShBj./gC08NXu1ii9CuLDzR7RdNye0OBd9GdiSVF84Sa','2026-04-16 14:00:04','2026-04-16 14:00:04'),(28,'Rakesh','$2b$10$dVBuqKaLtBxundopHwQ4.OvNB3TPz9iwF7uU0jBUt2/QOJnBLouru','2026-04-17 04:35:02','2026-04-17 04:35:02'),(29,'karthik','$2b$10$G3hHpRXukQTEDLf5A64IHuIOuDrLfL5sj9woEZbos2EOHju5m/rnO','2026-04-17 07:27:02','2026-04-17 07:27:02'),(30,'vinay','$2b$10$akcxRESlCMFEVO2R7Hj7bOJwb3s3iGzG897FjTUQ57cKZc9i9xyaC','2026-04-17 07:34:19','2026-04-17 07:34:19'),(31,'Kima','$2b$10$LJR0JpcMQO6Z7JWl8XMysu0Sj1DhPA7g2IHg4HykSB8gV.uMCJjfi','2026-04-17 07:45:05','2026-04-17 07:45:05'),(32,'xyz','$2b$10$nXhzNuZQmGS52R2njn4ZqeVtJOUmNiOyK6gY2.OMk.UMuxanhDo1u','2026-04-21 06:10:33','2026-04-21 06:10:33'),(33,'Nandamuri','$2b$10$XNFdXIjb0gxPk7DljEEPuuKE7Lq0QSY1TqrkOBiAjz42EkBjDtyom','2026-04-22 04:27:25','2026-04-22 04:27:25'),(34,'Nentranada Reddy','$2b$10$qN4q0vMqqAJlvytpeeZz9uLw.iVGAjRZGF27H.r5O/3OVcGhZBBGO','2026-04-22 06:55:49','2026-04-22 06:55:49'),(35,'Nentrananda Reddy','$2b$10$.ZpnVrjGG0c/mteijezZ2e/CpSAeeJSnwRAKWvBoWxjEhiux9srDG','2026-04-22 06:57:41','2026-04-22 06:57:41'),(36,'VeraRaju','$2b$10$JWS92.VoHiMOWbwIlKK7K.SlUqXuBT1DmpVr.SNgYYe97xAsJ.J/O','2026-04-23 04:25:37','2026-04-23 04:25:37'),(37,'gangaraju','$2b$10$27rp407STwbR78n2qrQYDuofGPU262zVRkhh/702KnrdKgVakcZOW','2026-05-07 09:08:57','2026-05-07 09:08:57'),(38,'Raghav','$2b$10$Ft02qT4jhjD4snKKUI1HXuW3CTrcPldWk69RUvQf9LAjkXSwBKm0S','2026-05-07 13:01:24','2026-05-07 13:01:24'),(39,'jabili','$2b$10$r8GC6BLQTxpSeuVhWubqseKnedPZZo9Kv/lL4mVbaY5H3/w18qk/6','2026-05-07 13:19:28','2026-05-07 13:19:28'),(40,'ragini','$2b$10$rHMLRmQlSgZljaLaT6ZxtOd08qwnqLjCt2hdQ4pEGMwgdzVB9wZnK','2026-05-08 07:42:11','2026-05-08 07:42:11'),(41,'Yamuna','$2b$10$/sMizekCg1VbBdvQjPVFjeE1iFh1YjoVcTgeUzdRJWfOtrDLx8pv6','2026-05-08 07:59:31','2026-05-08 07:59:31'),(42,'yugandar','$2b$10$sWWNBT9z9gT6ia5cq2jtj.ZAQ0BJaqu5OQ2jGdG0BNgMhL56sPAjK','2026-05-08 08:50:53','2026-05-08 08:50:53'),(43,'Yanni','$2b$10$wTnrkiImR.xaFezslOgWhetcsBQACyXPD6CZEoIVV2qoWYY1sKN9u','2026-05-08 10:24:37','2026-05-08 10:24:37'),(44,'Vyjav','$2b$10$KlHJc1M8wDzfXM0kLfAfOeAUbNx0Sq4rKq1Xl3FVghD19m6QW.IXe','2026-05-08 10:35:23','2026-05-08 10:35:23'),(45,'VijaySanthi','$2b$10$56sG7Fz7bWDO2dhnN9nGvu7YUZND/ox5o7r1f0X4Vg52Vk2FiGQzq','2026-05-08 10:42:13','2026-05-08 10:42:13'),(46,'Jagan','$2b$10$JJ9.YD0XI7ThHviP59oDlO4wzYks13x9nvkQcSOnnnVBJQ8oHkCaK','2026-05-18 07:00:58','2026-05-18 07:00:58'),(47,'Arun','$2b$10$n78sgycDiJwVGc.GLrL2FOd8cd8dwx8ac3PLvqtf8n0IsvelwYQ9i','2026-05-18 08:12:49','2026-05-18 08:12:49'),(48,'Abhishek','$2b$10$usfkGYSiNQ4epzDicqvCMe9cH19rpNUngjVBQofZJeMtb8IQBydJO','2026-05-19 06:22:19','2026-05-19 06:22:19'),(49,'Vishnu','$2b$10$4132jDeDRudNBQvqu6aKU.KO56F9bLcmqdgezDkOrnU78388/3SvS','2026-05-20 05:34:31','2026-05-20 05:34:31'),(50,'Jitesh','$2b$10$8RpOhRyYC6fylsn6ueqO4O6Il1TMLm2y8ou4jkBAOIRnbhyhBJgeC','2026-05-20 07:22:11','2026-05-20 07:22:11'),(51,'Raji','$2b$10$geP5CMkU6/MzbCTgqvlZV.ejXDECgLHqZfuUDOGkM74Z4rk1x.lna','2026-05-20 09:36:43','2026-05-20 09:36:43'),(52,'Avanth','$2b$10$vrX1PZSaqb5BBKQZuy4qwem/pGJqUB07geruAJzpJ6QY5V.xBeS1S','2026-05-20 11:38:35','2026-05-20 11:38:35'),(53,'Shankar','$2b$10$T1sptAC00S3WvNKLrBHYUOAeEc7eti9./cb3KKHBM0pGzwfnUll.q','2026-05-21 04:42:37','2026-05-21 04:42:37'),(54,'Hari','$2b$10$QB8MmCEKhULje/LqS/uWaO0h71L7b/CKJgvY9TL2QUuwbULosyTsS','2026-05-24 10:54:47','2026-05-24 10:54:47'),(55,'KrishNova','$2b$10$9rB/s2VkhvHftd4zWdvw/OZoaj2oxRjWqesztS9HnHekBHNXxwNu2','2026-05-27 06:17:13','2026-05-27 06:17:13');
-/*!40000 ALTER TABLE `clients` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -78,8 +69,6 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS `posts`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `posts` (
   `PostId` int NOT NULL AUTO_INCREMENT,
   `Title` varchar(255) DEFAULT NULL,
@@ -106,7 +95,6 @@ CREATE TABLE `posts` (
   CONSTRAINT `posts_ibfk_2` FOREIGN KEY (`AuthorId`) REFERENCES `users` (`id`),
   CONSTRAINT `posts_ibfk_3` FOREIGN KEY (`AuthorId`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1107 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `posts`
@@ -138,18 +126,13 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `users`
---
+
 
 AuthorId must select UI Interface Post creating time 1 or 2 only because to usere is there
 
 LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` VALUES (1,'Krishna','krishna@gmail.com','123456','9999999999','IT','2026-03-26 08:38:42'),(2,'Manju','manju@123','8826123664','2221112224','Technology','2026-03-31 10:31:42');
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -164,20 +147,20 @@ UNLOCK TABLES;
 -- Dump completed on 2026-05-27 15:38:44
 
 
-.env file create chesi pettu andulo ee file pakaga very important .env file 
-# Server
-PORT=5000
+-- .env file create chesi pettu andulo ee file pakaga very important .env file 
+-- # Server
+-- PORT=5000
 
-# Database
-DB_HOST=localhost
-DB_USER=root
-DB_PASSWORD=Krish@123
-DB_NAME=blogdata
+-- # Database
+-- DB_HOST=localhost
+-- DB_USER=root
+-- DB_PASSWORD=Krish@123
+-- DB_NAME=blogdata
 
-# JWT
-JWT_EXPIRES_IN=7d
+-- # JWT
+-- JWT_EXPIRES_IN=7d
 
-JWT_SECRET=My_Super_Secret_Key_12345
+-- JWT_SECRET=My_Super_Secret_Key_12345
 
-# Environment
-NODE_ENV=development
+-- # Environment
+-- NODE_ENV=development

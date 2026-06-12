@@ -1,6 +1,6 @@
 const categoryRepo = require('../Models/categoryRepo.js');
-const getCategories = async () => {
-  const categories = await categoryRepo.getCategories();
+const getCategories = async (categoryId) => {
+  const categories = await categoryRepo.getCategories(categoryId);
   return categories;
 };
 

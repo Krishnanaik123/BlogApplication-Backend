@@ -1,20 +1,16 @@
-const { translate } = require("@vitalets/google-translate-api");
-const delay = (ms) =>
-  new Promise((resolve) =>
-    setTimeout(resolve, ms)
-  );
+const translate = require('translate').default || require('translate');
+translate.engine = 'google';
 
-// Translation Function
-const translateText = async (text,targetLanguage) => {
+const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+const translateText = async (text, targetLanguage) => {
   try {
-    await delay(2000);
-    const result = await translate(text,
-        { to: targetLanguage,}
-      );
-    return result.text;
+    await delay(500);
+    const result = await translate(text, { to: targetLanguage });
+    return result;
   } catch (error) {
-    console.log( "Translation Error:",error);
+    console.log("TRANSLATION MESSAGE =>", error?.message);
     return text;
   }
 };
-module.exports = {translateText,};
+
+module.exports = { translateText };

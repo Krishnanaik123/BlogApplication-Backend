@@ -4,7 +4,10 @@ const postController = require('../Controllers/postController');
 const { verifyToken } = require('../middlewares/authMiddleware');
 
 router.get('/', postController.getPosts);
+// router.get('/getSearchPosts', postController.getSearchPosts);
+router.get('/searchPosts', postController.getSearchPosts)
 // Get Single Post
 router.get('/:id', postController.getSinglePost);
+
 
 module.exports = router;

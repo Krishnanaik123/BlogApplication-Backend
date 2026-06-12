@@ -1,4 +1,4 @@
-//localhost mysql connectionoriginal
+// ///localhost mysql connectionoriginal
 //  const mysql2 = require('mysql2');
 //  require('dotenv').config();
 

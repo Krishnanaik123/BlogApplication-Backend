@@ -2,8 +2,8 @@ const postService = require('../Services/postService');
 const { translateText,} = require('../Services/translationService');
 const getPosts = async(req,res) => {
     try{
-        const {page=1,limit=10} = req.query;
-        const posts = await postService.getPosts({page,limit});
+        const {page=1,limit=10,categoryId} = req.query;
+        const posts = await postService.getPosts({page,limit,categoryId});
         res.status(200).json({
             success:true,
             message:"Fetched Posts Successfully",
@@ -21,75 +21,88 @@ const getPosts = async(req,res) => {
 
 const getSearchPosts = async (req, res) => {
     try {
-        const { q, page = 1, limit = 10 } = req.query;
+        const { q, keyword,page = 1, limit = 10 } = req.query;
+
+          const searchTerm = q || keyword;
         
         const p = parseInt(page);
         const l = parseInt(limit);
         const offset = (p - 1) * l;
-        const results = await postService.searchPostsService(q, l, offset);
+
+         const [results, total] = await Promise.all([
+            postService.searchPostsService(searchTerm, l, offset),
+            postService.searchPostsCount(searchTerm)
+        ]);
+
+        // const results = await postService.searchPostsService(searchTerm, l, offset);
         res.status(200).json({
             success: true,
             message: results.length > 0 ? "Search results found" : "No results match your search",
             data: results, 
-            count: results.length 
+            count: results.length ,
+            pagination: {
+                total,
+                page: p,
+                limit: l,
+                totalPages: Math.ceil(total / l)  
+            }
         });
     } catch (error) {
         res.status(500).json({ success: false, message: error.message });
     }
 };
 
-const createPost = async(req,res) => {
 
-
-    try{   
-      const {
-                title_en,
-                content_en,
-                category_id,
-                AuthorId,
-                authorId
-} = req.body;
+const createPost = async (req, res) => {
+    try {
+        const { title_en, content_en, category_id, AuthorId, authorId } = req.body;
         const finalAuthorId = AuthorId || authorId;
-         const title_hi = await translateText( title_en, "hi" );
-            const title_te = await translateText(title_en,"te");
-            const content_hi = await translateText(content_en,"hi");
-            const content_te = await translateText(content_en,"te");
-            console.log("TITLE HI =>",title_hi);
-            console.log("TITLE TE =>",title_te);
-            console.log("CONTENT HI =>",content_hi);
-            console.log("CONTENT TE =>",content_te);
-            
-        const missingFields = [];
-            if(!title_en) missingFields.push('title_en');
-   
 
-        if(missingFields.length > 0){
+      
+        if (!title_en) {
             return res.status(400).json({
-                success:false,
-                message:`Missing required fields: ${missingFields.join(', ')}`
+                success: false,
+                message: 'Missing required fields: title_en'
             })
         }
 
+        //  Step 2 — Then translate:
+        const [title_hi, title_te, content_hi, content_te] = await Promise.all([
+            translateText(title_en, "hi"),
+            translateText(title_en, "te"),
+            translateText(content_en, "hi"),
+            translateText(content_en, "te")
+        ]);
 
-        const imageUrl = req.files && req.files.length > 0 ? req.files[0].path: null;
-        // const imageUrl = req.files && req.files.length > 0 ? req.files[0].filename : null;
-        const post = await postService.createPost({title_en,title_hi,title_te,content_en,content_hi,content_te,category_id,AuthorId:finalAuthorId,imageUrl});
+       
+        const imageUrl = req.files && req.files.length > 0 
+            ? req.files[0].path 
+            : null;
+
+       
+        const post = await postService.createPost({
+            title_en, title_hi, title_te,
+            content_en, content_hi, content_te,
+            category_id, AuthorId: finalAuthorId, imageUrl
+        });
 
         res.status(201).json({
-            success:true,
-            message:"Created Post Successfully",
-            data:post
+            success: true,
+            message: "Created Post Successfully",
+            data: post
         })
-    }catch(error){
-          console.log("CREATE POST ERROR =>", error);
+
+    } catch (error) {
+       console.log("CREATE POST ERROR =>", JSON.stringify(error, null, 2));
+    console.log("CREATE POST MESSAGE =>", error?.message);
+    console.log("CREATE POST STRING =>", String(error));
         res.status(500).json({
-            success:false,
-            message:'Failed to Create Post',
-            error:error.message
+            success: false,
+            message: 'Failed to Create Post',
+            error: error.message
         })
     }
-
-};  
+};
 
 const getSinglePost = async (req, res) => {
 

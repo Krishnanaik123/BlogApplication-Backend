@@ -5,13 +5,17 @@ const createPost = async ({title_en,title_hi,title_te,content_en,content_hi,cont
     return post;
 }
 
-const getPosts = async ({page,limit}) => {
-    const posts = await postRepo.getPosts({page,limit});
+const getPosts = async ({page,limit,categoryId}) => {
+    const posts = await postRepo.getPosts({page,limit,categoryId});
     return posts;
 }
 
-const searchPostsService = async (q, limit, offset) => {
-    return await postRepo.searchPostsRepo(q, limit, offset);
+const searchPostsService = async (searchTerm, limit, offset) => {
+    return await postRepo.searchPostsRepo(searchTerm, limit, offset);
+};
+
+const searchPostsCount = async (searchTerm) => {
+    return await postRepo.searchPostsCount(searchTerm);
 };
 
 const getSinglePost = async (id) => {
@@ -19,4 +23,4 @@ const getSinglePost = async (id) => {
     return await postRepo
     .getSinglePost(id);
 };
-module.exports = {createPost,getPosts,searchPostsService,getSinglePost};
+module.exports = {createPost,getPosts,searchPostsService,searchPostsCount,getSinglePost};
