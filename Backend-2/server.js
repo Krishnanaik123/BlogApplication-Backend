@@ -21,7 +21,7 @@ app.get('/api/clients', async (req, res) => {
   }
 });
 
-const PORT = 3006;
+const PORT = process.env.PORT || 3006;
 app.listen(PORT, () => {
   console.log(`Backend-2 running on port ${PORT}`);
 });
